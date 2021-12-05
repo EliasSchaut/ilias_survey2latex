@@ -1,2 +1,2 @@
 # ilias_survey2latex
-Nicely export ilias_surveys into a beautiful latex code
+Fast made converter that turns exported ilias_surveys into a beautiful latex code
