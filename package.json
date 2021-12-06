@@ -1,7 +1,8 @@
 {
   "scripts": {
     "run": "node ./src/index.js",
-    "get-q": "node ./src/questions2json.js"
+    "get-q": "node ./src/questions2json.js",
+    "gen-tex": "node ./src/generate_latex.js"
   },
   "dependencies": {
     "fs-extra": "^10.0.0",

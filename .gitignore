@@ -109,3 +109,4 @@ dist
 # Project-Internals
 src/text/questions.json
 *.csv
+*.tex

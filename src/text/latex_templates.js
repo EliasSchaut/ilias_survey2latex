@@ -1,6 +1,8 @@
 const template = {
     questions: {
-
+        title: function (title) {return `\\question \\textfb{${title}}\n`},
+        description: function (text) {return text + "\n"},
+        answer: function (answer) {return `\\textbf{${answer}}\n`}
     },
     doc: {
       start: "% -------------------\n" +
@@ -11,9 +13,9 @@ const template = {
           "% ---------\n" +
           "% Questions\n" +
           "% ---------\n" +
-          "\\begin{questions}",
+          "\\begin{questions}\n",
         end: "\\end{questions}\n" +
-            "\\end{document}"
+            "\\end{document}\n"
     },
     head: function (student_id) {
         return "\\documentclass[12pt,letterpaper]{exam}\n" +
@@ -55,6 +57,7 @@ const template = {
         "% -------------------\n" +
         "\\usepackage[T1]{fontenc}\n" +
         "\\usepackage{charter}\n" +
+        "\\qformat{}\n" +
         "\n" +
         "\n" +
         "% -------------------\n" +
@@ -111,3 +114,5 @@ const template = {
         "\n"
     }
 }
+
+module.exports = { template }
