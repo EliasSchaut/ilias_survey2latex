@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "run": "node ./src/index.js"
+    "run": "node ./src/index.js",
+    "get-q": "node ./src/questions2json.js"
   },
   "dependencies": {
     "fs-extra": "^10.0.0",
