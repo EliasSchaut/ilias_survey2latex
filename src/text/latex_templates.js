@@ -1,14 +1,15 @@
 const template = {
     questions: {
-        title: function (title) {return `\\question \\textfb{${title}}\n`},
-        description: function (text) {return text + "\n"},
-        answer: function (answer) {return `\\textbf{${answer}}\n`}
+        title: function (title) {return `\n\\question \\textbf{${title}}\\\\\n`},
+        description: function (text) {return `\\textit{${text}}\\\\\n`},
+        answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`}
     },
     doc: {
       start: "% -------------------\n" +
           "% Content\n" +
           "% -------------------\n" +
           "\\begin{document}\n" +
+          "\\titleinfo\n" +
           "\n" +
           "% ---------\n" +
           "% Questions\n" +
@@ -46,7 +47,7 @@ const template = {
         "% Course & Exam Information\n" +
         "% -------------------\n" +
         "\\newcommand{\\course}{Umfrage Beratungsgespräch}\n" +
-        `\\newcommand{\\coursetitle}{${student_id}\n` +
+        `\\newcommand{\\coursetitle}{${student_id}}\n` +
         "\\newcommand{\\examnumber}{3}\n" +
         "\\newcommand{\\term}{\\today}\n" +
         "\\newcommand{\\instructor}{Christine Glaubitz}\n" +

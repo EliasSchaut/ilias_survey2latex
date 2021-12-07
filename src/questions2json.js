@@ -1,4 +1,5 @@
 const input = require("./terminal").read('./inputs/questions.csv')
+const { rm_umlaut, rm_txt } = require('./helper')
 const output = {}
 
 const lines = []
@@ -28,17 +29,9 @@ for (const line of lines) {
     const e = line.split(";")
     const key = rm_umlaut(e[0])
     output[key] = {
-        value: e[1],
-        type: e[2]
+        value: rm_umlaut(e[1]),
+        type: rm_umlaut(e[2])
     }
-}
-
-function rm_txt(str) {
-    return str.replaceAll(/"|<(\/)?p>|<(\/)?span>/g, '')
-}
-
-function rm_umlaut(str) {
-    return str.toLowerCase().replaceAll("ö", "oe").replaceAll("ä", "ae").replace("ü", "ue")
 }
 
 require('./terminal').writeJSON('./text/questions.json', output)
