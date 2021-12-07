@@ -1,5 +1,5 @@
-const input = require("./terminal").read('./inputs/questions.csv')
-const { rm_umlaut, rm_txt } = require('./helper')
+const input = require("./util/terminal").read('./inputs/questions.csv')
+const { rm_umlaut, rm_txt } = require('./util/helper')
 const output = {}
 
 const lines = []
@@ -34,4 +34,4 @@ for (const line of lines) {
     }
 }
 
-require('./terminal').writeJSON('./text/questions.json', output)
+require('./util/terminal').writeJSON('./text/questions.json', output)

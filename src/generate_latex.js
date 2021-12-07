@@ -1,7 +1,7 @@
 const qst = require('./text/questions.json')
 const tmp = require('./text/latex_templates').template
-const asw = require('./terminal').read('./inputs/answers.csv')
-const { rm_umlaut, convert2umlaut, rm_quotes } = require('./helper')
+const asw = require('./util/terminal').read('./inputs/answers.csv')
+const { rm_umlaut, convert2umlaut, rm_quotes } = require('./util/helper')
 
 const lines = asw.split("\n")
 const head = rm_quotes(lines[0]).split(";")
@@ -28,7 +28,7 @@ for (let i = 2; i < lines.length; i++) {
 
 
     tex += tmp.doc.end
-    require('./terminal').write(`./outputs/${rm_quotes(e[2])}.tex`, tex)
+    require('./util/terminal').write(`./outputs/${rm_quotes(e[2])}.tex`, tex)
     console.log("successfully generate file for " + rm_quotes(e[2]))
 }
 
