@@ -19,7 +19,7 @@ const template = {
         end: "\\end{questions}\n" +
             "\\end{document}\n"
     },
-    head: function (student_id) {
+    head: function (course, title, term, instructor) {
         return "\\documentclass[12pt,letterpaper]{exam}\n" +
         "\\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}\n" +
         "\\printanswers\n" +
@@ -47,11 +47,11 @@ const template = {
         "% -------------------\n" +
         "% Course & Exam Information\n" +
         "% -------------------\n" +
-        "\\newcommand{\\course}{Umfrage Beratungsgespräch}\n" +
-        `\\newcommand{\\coursetitle}{${student_id}}\n` +
-        "\\newcommand{\\examnumber}{3}\n" +
-        "\\newcommand{\\term}{\\today}\n" +
-        "\\newcommand{\\instructor}{Christine Glaubitz}\n" +
+        `\\newcommand{\\course}{${course}}\n` +
+        `\\newcommand{\\coursetitle}{${title}}\n` +
+        "\\newcommand{\\examnumber}{}\n" +
+        `\\newcommand{\\term}{${term}}\n` +
+        `\\newcommand{\\instructor}{${instructor}}\n` +
         "\n" +
         "\n" +
         "% -------------------\n" +

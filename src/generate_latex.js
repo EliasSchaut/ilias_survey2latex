@@ -3,6 +3,9 @@ const tmp = require('./text/latex_templates').template
 const answers = require('./util/terminal').read('./inputs/answers.csv')
 const { choice_types } = require("./helper/model")
 const { rm_umlaut, convert2umlaut, rm_quotes } = require('./helper/helper')
+const course = "Umfrage Beratungsgespräch"
+const term = "Ezzi"
+const instructor = "Christine Glaubitz"
 const args = process.argv
 
 const lines = answers.split("\n")
@@ -13,7 +16,7 @@ for (let i = 2; i < lines.length; i++) {
     const e = lines[i].split(";")
     if (args.length !== 0 && !args.includes(rm_quotes(e[2]))) continue
 
-    let tex = tmp.head(rm_quotes(e[2])) + tmp.doc.start
+    let tex = tmp.head(course, rm_quotes(e[2]), term, instructor) + tmp.doc.start
 
     for (let j = 5; j < e.length; j++) {
         if (title[j].endsWith("]")) {
