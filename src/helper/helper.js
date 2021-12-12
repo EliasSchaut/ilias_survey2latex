@@ -7,12 +7,12 @@ function rm_txt(str) {
 }
 
 function rm_umlaut(str) {
-    return str.replaceAll("ö", "oe").replaceAll("ä", "ae").replace("ü", "ue")
+    return str.replaceAll("ö", "oe").replaceAll("ä", "ae").replaceAll("ü", "ue")
         .replaceAll("Ö", 'Oe').replaceAll('Ä', 'Ae').replaceAll('Ü', 'Ue')
 }
 
 function convert2umlaut(str) {
-    return str.replaceAll("oe", "ö").replaceAll("ae", "ä").replace("ue", "ü")
+    return str.replaceAll("oe", "ö").replaceAll("ae", "ä").replaceAll("ue", "ü")
         .replaceAll("Oe", 'Ö').replaceAll('Ae', 'Ä').replaceAll('Ue', 'Ü')
 }
 

@@ -110,3 +110,4 @@ dist
 src/text/questions.json
 *.csv
 *.tex
+*.xlsx
