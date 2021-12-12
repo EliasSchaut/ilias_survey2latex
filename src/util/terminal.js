@@ -1,3 +1,4 @@
+const latex = require('node-latex')
 const fse = require('fs-extra')
 const fs = require('fs')
 
@@ -19,4 +20,13 @@ function writeJSON(path, data) {
     }
 }
 
-module.exports = { read, write, writeJSON }
+function writeLatex(path, data) {
+    const output = fs.createWriteStream(path)
+    const pdf = latex(data, { passes: 2 })
+
+    pdf.pipe(output)
+    pdf.on('error', err => console.error(err))
+    pdf.on('finish', () => console.log('PDF generated!'))
+}
+
+module.exports = { read, write, writeJSON, writeLatex }
