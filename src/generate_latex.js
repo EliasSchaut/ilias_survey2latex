@@ -1,6 +1,6 @@
 const qst = require('./text/questions.json')
 const tmp = require('./text/latex_templates').template
-const answers = require('./util/terminal').read('./inputs/answers.csv')
+const answers = require('./util/terminal').read('./src/inputs/answers.csv')
 const { choice_types } = require("./helper/model")
 const { rm_umlaut, convert2umlaut, rm_quotes } = require('./helper/helper')
 
@@ -10,14 +10,13 @@ const instructor = "Christine Glaubitz"
 const args = process.argv
 
 
-
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
 for (let i = 2; i < lines.length; i++) {
     if (lines[i] === "") continue
 
     const e = lines[i].split(";")
-    if (args.length !== 0 && !args.includes(rm_quotes(e[2]))) continue
+    if (args.length > 2 && !args.includes(rm_quotes(e[2]))) continue
 
     let tex = tmp.head(course, rm_quotes(e[2]), term, instructor) + tmp.doc.start
 
@@ -113,8 +112,8 @@ for (let i = 2; i < lines.length; i++) {
     }
 
     tex += tmp.doc.end
-    require('./util/terminal').write(`./outputs/tex/${rm_quotes(e[2])}.tex`, tex)
-    require('./util/terminal').writeLatex(`./outputs/pdf/${rm_quotes(e[2])}.pdf`, tex)
+    require('./util/terminal').write(`./src/outputs/tex/${rm_quotes(e[2])}.tex`, tex)
+    require('./util/terminal').writeLatex(`./src/outputs/pdf/${rm_quotes(e[2])}.pdf`, tex)
     console.log("successfully generate file for " + rm_quotes(e[2]))
 }
 
