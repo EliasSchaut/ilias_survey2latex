@@ -7,13 +7,13 @@ function rm_txt(str) {
 }
 
 function rm_umlaut(str) {
-    return str.replaceAll("ö", "oe").replaceAll("ä", "ae").replaceAll("ü", "ue")
-        .replaceAll("Ö", 'Oe').replaceAll('Ä', 'Ae').replaceAll('Ü', 'Ue')
+    return str.replaceAll("ö", "^o*").replaceAll("ä", "^a*").replaceAll("ü", "^u*")
+        .replaceAll("Ö", '^O*').replaceAll('Ä', '^A*').replaceAll('Ü', '^U*')
 }
 
 function convert2umlaut(str) {
-    return str.replaceAll("oe", "ö").replaceAll("ae", "ä").replaceAll("ue", "ü")
-        .replaceAll("Oe", 'Ö').replaceAll('Ae', 'Ä').replaceAll('Ue', 'Ü')
+    return str.replaceAll("^o*", "ö").replaceAll("^a*", "ä").replaceAll("^u*", "ü")
+        .replaceAll("^O*", 'Ö').replaceAll('^A*', 'Ä').replaceAll('^U*', 'Ü')
 }
 
 module.exports = { rm_quotes, rm_txt, rm_umlaut, convert2umlaut }

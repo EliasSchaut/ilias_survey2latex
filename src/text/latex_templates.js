@@ -2,7 +2,8 @@ const template = {
     questions: {
         title: function (title) {return `\n\\question \\textbf{${title}}\\\\\n`},
         description: function (text) {return `\\textit{${text}}\\\\\n`},
-        answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`}
+        answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`},
+        add_answer: function (answer) {return `\\textbf{${answer}}\n`}
     },
     doc: {
       start: "% -------------------\n" +
