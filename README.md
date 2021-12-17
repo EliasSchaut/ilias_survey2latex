@@ -12,4 +12,4 @@ You need [Node.js](https://nodejs.org/en/) and [Latex](https://www.latex-project
 5. The program generates a latex files and pdf files in folder `output`
 
 ## Extra
-You can write `npm run uxxxx` to just generate files for this users (multiple args allowed)
+You can write `npm run uxxxx` to just generate files for this user (multiple args allowed)
