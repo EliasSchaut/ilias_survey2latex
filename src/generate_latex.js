@@ -30,8 +30,6 @@ for (let i = 2; i < lines.length; i++) {
             }
         }
         else if (Object.keys(qst).includes(rm_umlaut(title[j]))) {
-            if (qst[rm_umlaut(title[j])].type === undefined) continue
-
             // --------------------
             // Single Choice Frage
             // --------------------
@@ -87,9 +85,7 @@ for (let i = 2; i < lines.length; i++) {
                 }
 
                 if (answers.length !== 0) {
-                    tex += tmp.questions.title(title[j])
-                        + tmp.questions.description(convert2umlaut(qst[rm_umlaut(title[j])].value))
-                        + generate_qst(title[j], choice_types.matrix, qst[rm_umlaut(title[j])].value, tmp.list(answers))
+                    tex += generate_qst(title[j], choice_types.matrix, qst[rm_umlaut(title[j])].value, tmp.list(answers))
                 }
                 j = k - 1
             }
