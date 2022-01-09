@@ -58,7 +58,7 @@ for (let i = 2; i < lines.length; i++) {
                 }
 
                 if (answers.length !== 0) {
-                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].value, answers.join(", "))
+                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].value, tmp.list(answers))
                 }
                 j = k - 1
             }

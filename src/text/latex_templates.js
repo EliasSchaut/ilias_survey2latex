@@ -5,6 +5,14 @@ const template = {
         answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`},
         add_answer: function (answer) {return `\\textbf{${answer}}\n`}
     },
+    list: function (str_arr) {
+        return "\n"
+            + "\\begin{itemize}"
+            + str_arr.map(function (e) {
+                return "\\item " + e
+            }).join("\n")
+            + "\\end{itemize}"
+    },
     doc: {
       start: "% -------------------\n" +
           "% Content\n" +
