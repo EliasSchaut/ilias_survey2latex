@@ -2,7 +2,7 @@
 Fast and bad made converter that turns exported ilias_surveys into a beautiful latex code.
 
 ## Preparations
-You need [Node.js](https://nodejs.org/en/) and [Latex](https://www.latex-project.org/get/) installed
+You need [Node.js](https://nodejs.org/en/), [Latex](https://www.latex-project.org/get/) and the [latex-documentclass exam](https://ctan.org/pkg/exam?lang=en) installed
 
 ## How to use
 1. Copy survey (per participant) from ILIAS as csv file (Ergebnisse -> Pro Teilnehmer) with title only into `inputs` folder and rename it into `answers.csv`
