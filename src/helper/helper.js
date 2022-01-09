@@ -3,7 +3,7 @@ function rm_quotes(str) {
 }
 
 function rm_txt(str) {
-    return str.replaceAll(/"|<(\/)?p>|<(\/)?span>|__/g, '').replaceAll(" ", ' ')
+    return str.replaceAll(/"|<(\/)?p>|<(\/)?span>|<(\/)?strong>|__/g, '').replaceAll(" ", ' ')
 }
 
 function rm_umlaut(str) {
