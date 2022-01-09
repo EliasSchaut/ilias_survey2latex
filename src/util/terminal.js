@@ -21,12 +21,16 @@ function writeJSON(path, data) {
 }
 
 function writeLatex(path, data) {
-    const output = fs.createWriteStream(path)
-    const pdf = latex(data, { passes: 2 })
+    try {
+        const output = fs.createWriteStream(path)
+        const pdf = latex(data, { passes: 2 })
 
-    pdf.pipe(output)
-    pdf.on('error', err => console.error(err))
-    pdf.on('finish', () => console.log('PDF generated!'))
+        pdf.pipe(output)
+        pdf.on('error', err => console.error(err))
+        pdf.on('finish', () => console.log('PDF generated!'))
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 module.exports = { read, write, writeJSON, writeLatex }
