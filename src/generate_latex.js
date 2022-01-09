@@ -36,11 +36,12 @@ for (let i = 2; i < lines.length; i++) {
             if (qst[rm_umlaut(title[j])].type === choice_types.single) {
                 const answer = rm_quotes(e[j])
                 if (is_set(answer)) {
-                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].value, format_answer(answer))
+                    tex += generate_qst(title[j], choice_types.single, qst[rm_umlaut(title[j])].value, format_answer(answer))
                     j++
                 }
             }
             // -------------------
+
 
             // --------------------
             // Multiple Choice Frage
@@ -58,7 +59,7 @@ for (let i = 2; i < lines.length; i++) {
                 }
 
                 if (answers.length !== 0) {
-                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].value, answers.join(", "))
+                    tex += generate_qst(title[j], choice_types.multiple, qst[rm_umlaut(title[j])].value, tmp.list(answers))
                 }
                 j = k - 1
             }
@@ -84,9 +85,7 @@ for (let i = 2; i < lines.length; i++) {
                 }
 
                 if (answers.length !== 0) {
-                    tex += tmp.questions.title(title[j])
-                        + tmp.questions.description(convert2umlaut(qst[rm_umlaut(title[j])].value))
-                        + generate_qst(title[j], qst[rm_umlaut(title[j])].value, answers.join(", "))
+                    tex += generate_qst(title[j], choice_types.matrix, qst[rm_umlaut(title[j])].value, tmp.list(answers))
                 }
                 j = k - 1
             }
@@ -98,7 +97,7 @@ for (let i = 2; i < lines.length; i++) {
             else {
                 const answer = rm_quotes(e[j])
                 if (is_set(answer)) {
-                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].value, format_answer(answer))
+                    tex += generate_qst(title[j], qst[rm_umlaut(title[j])].type, qst[rm_umlaut(title[j])].value, format_answer(answer))
                 }
             }
             // --------------------
@@ -117,8 +116,8 @@ for (let i = 2; i < lines.length; i++) {
     console.log("successfully generate file for " + rm_quotes(e[2]))
 }
 
-function generate_qst(title, description, answer) {
-    return tmp.questions.title(convert2umlaut(title))
+function generate_qst(title, type, description, answer) {
+    return tmp.questions.title(convert2umlaut(title), type)
         + tmp.questions.description(convert2umlaut(description))
         + tmp.questions.answer(convert2umlaut(answer))
 }
