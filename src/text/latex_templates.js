@@ -1,6 +1,6 @@
 const template = {
     questions: {
-        title: function (title) {return `\n\\question \\textbf{${title}}\\\\\n`},
+        title: function (title, type) {return `\n\\question \\textbf{${title}} \\gray(${type})\\\\\n`},
         description: function (text) {return `\\textit{${text}}\\\\\n`},
         answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`},
         add_answer: function (answer) {return `\\textbf{${answer}}\n`}
@@ -60,6 +60,7 @@ const template = {
         "\\newcommand{\\examnumber}{}\n" +
         `\\newcommand{\\term}{${term}}\n` +
         `\\newcommand{\\instructor}{${instructor}}\n` +
+        "\\newcommand{\\gray}[1]{\\textcolor{gray}{#1}}" +
         "\n" +
         "\n" +
         "% -------------------\n" +
