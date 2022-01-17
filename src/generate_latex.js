@@ -5,10 +5,14 @@ const { choice_types } = require("./helper/model")
 const { rm_umlaut, convert2umlaut, rm_quotes } = require('./helper/helper')
 
 const course = "Umfrage Beratungsgespräch"
-const term = "Ezzi"
+const term = "ezzi"
 const instructor = "Christine Glaubitz"
 const args = process.argv
-
+//---------
+//OPTIONS
+//---------
+const skipDesc = true
+const skipType = true
 
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
@@ -36,6 +40,8 @@ for (let i = 2; i < lines.length; i++) {
             if (qst[rm_umlaut(title[j])].type === choice_types.single) {
                 const answer = rm_quotes(e[j])
                 if (is_set(answer)) {
+                    
+                    
                     tex += generate_qst(title[j], choice_types.single, qst[rm_umlaut(title[j])].value, format_answer(answer))
                     j++
                 }
@@ -117,9 +123,22 @@ for (let i = 2; i < lines.length; i++) {
 }
 
 function generate_qst(title, type, description, answer) {
-    return tmp.questions.title(convert2umlaut(title), type)
-        + tmp.questions.description(convert2umlaut(description))
-        + tmp.questions.answer(convert2umlaut(answer))
+    
+    let qst_tex = ""
+    if(skipType){
+        qst_tex = tmp.questions.title(convert2umlaut(title))
+    }
+    else{
+        qst_tex =tmp.questions.title(convert2umlaut(title), type)
+    }
+
+    if(!skipDesc){
+        qst_tex += tmp.questions.description(convert2umlaut(description))
+    }
+
+    qst_tex += tmp.questions.answer(convert2umlaut(answer))
+
+    return qst_tex
 }
 
 function add_answer(answer) {
