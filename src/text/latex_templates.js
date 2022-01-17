@@ -1,17 +1,22 @@
 const template = {
     questions: {
-        title: function (title, type) {return `\n\\question \\textbf{${title}} \\gray(${type})\\\\\n`},
+        title: function (title, type) {return `\n\\question \\textbf{${title}} \\gray(${type}) : `},
+        title: function(title) {return `\n\\question \\begin{tabular}{p{0.25\\linewidth}} \\small\\textbf{${title} :} \\end{tabular}` },
         description: function (text) {return `\\textit{${text}}\\\\\n`},
-        answer: function (answer) {return `\\textbf{Antwort: ${answer}}\n`},
+        answer: function (answer) {
+            return `\\begin{minipage}[t]{0.65\\paperwidth}\n {${answer}\n}\n \\end{minipage}\n \n \\hrulefill`
+        },
         add_answer: function (answer) {return `\\textbf{${answer}}\n`}
     },
     list: function (str_arr) {
         return "\n"
-            + "\\begin{itemize}"
+            + "\\begin{minipage}[t]{0.65\\paperwidth}"
+            + "\\begin{itemize}[leftmargin=*]"
             + str_arr.map(function (e) {
                 return "\\item " + e
             }).join("\n")
             + "\\end{itemize}"
+            + "\n\\end{minipage}"
     },
     doc: {
       start: "% -------------------\n" +
@@ -28,11 +33,13 @@ const template = {
             "\\end{document}\n"
     },
     head: function (course, title, term, instructor) {
-        return "\\documentclass[12pt,letterpaper]{exam}\n" +
-        "\\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}\n" +
+        return "\\documentclass[11pt,A4]{exam}\n" +
+        "\\usepackage[lmargin=0.5in,rmargin=0.5in,tmargin=0.5in,bmargin=0.5in]{geometry}\n" +
         "\\printanswers\n" +
         "\n" +
         "\n" +
+        "\\usepackage{setspace} \n" +
+        "\\setstretch{0.5} \n" + 
         "% Exam Class Documentation: https://ctan.org/pkg/exam?lang=en \n" +
         "% Compile at least twice, always.\n" +
         "\n" +
@@ -42,7 +49,7 @@ const template = {
         "\\usepackage{\n" +
         "\tamsmath,\t\t\t% Math Environments\n" +
         "\tamssymb,\t\t\t% Extended Symbols\n" +
-        "\tenumerate,\t\t    % Enumerate Environments\n" +
+        "\tenumitem,\t\t    % Enumerate Environments\n" +
         "\tgraphicx,\t\t\t% Include Images\n" +
         "\tmulticol,\t\t\t% Use Multi-columns\n" +
         "\tmultirow,\t\t\t% Use Multi-rows\n" +
@@ -51,6 +58,7 @@ const template = {
         "\ttkz-euclide\t\t    % Automate Graph Plots\n" +
         "}\n" +
         "\n" +
+        "\\setlist[itemize]{leftmargin=*}" +
         "\n" +
         "% -------------------\n" +
         "% Course & Exam Information\n" +
