@@ -107,6 +107,7 @@ dist
 .idea
 
 # Project-Internals
+config/config.json
 src/text/questions.json
 *.csv
 *.tex
