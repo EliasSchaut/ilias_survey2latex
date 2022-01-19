@@ -20,7 +20,6 @@ const key_index = config.key_index
 // ---------
 
 const answers = rm_breaking_semicolons(_answers)
-console.log(1)
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
 for (let i = 2; i < lines.length; i++) {

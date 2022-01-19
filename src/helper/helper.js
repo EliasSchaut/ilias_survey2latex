@@ -19,7 +19,6 @@ function convert2umlaut(str) {
 // replaces from user entered ; to ,
 function rm_breaking_semicolons(string) {
     const matches = string.match(/(?!";")"[^;"]*;([^;"]*;?)*"/g)
-
     if (matches === null) return string
 
     for (const match of matches) {
