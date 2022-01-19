@@ -65,7 +65,16 @@ for (let i = 2; i < lines.length; i++) {
                 while (title[k].endsWith("]")) {
                     const answer = rm_quotes(e[k])
                     if (is_set(answer)) {
-                        answers.push(format_answer(title[k].substring(0, title[k].length - 4)))
+
+                        // check "Freitext" in multiple choice
+                        if (title[k] === title[k + 1]) {
+                            const new_answer = rm_quotes(e[k + 1])
+                            answers.push(format_answer(new_answer))
+                            k++
+
+                        } else {
+                            answers.push(format_answer(title[k].substring(0, title[k].length - 4)))
+                        }
                     }
                     k++
                 }
