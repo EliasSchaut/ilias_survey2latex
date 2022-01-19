@@ -1,0 +1,10 @@
+{
+  "term": "<term>",
+  "course": "<course>",
+  "instructor": "<instructor>",
+
+  "skipDesc": true,
+  "skipType": true,
+
+  "key_index": 2
+}

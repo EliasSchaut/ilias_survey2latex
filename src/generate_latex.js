@@ -1,18 +1,23 @@
+const config = require("../config/config.json")
 const qst = require('./text/questions.json')
 const tmp = require('./text/latex_templates').template
 const answers = require('./util/terminal').read('./src/inputs/answers.csv')
-const { choice_types } = require("./helper/model")
-const { rm_umlaut, convert2umlaut, rm_quotes } = require('./helper/helper')
-
-const course = "Umfrage Beratungsgespräch"
-const term = "ezzi"
-const instructor = "Christine Glaubitz"
+const {choice_types} = require("./helper/model")
+const {rm_umlaut, convert2umlaut, rm_quotes} = require('./helper/helper')
 const args = process.argv
-//---------
-//OPTIONS
-//---------
-const skipDesc = true
-const skipType = true
+
+// ---------
+// OPTIONS
+// ---------
+const course = config.course
+const term = config.term
+const instructor = config.instructor
+
+const skipDesc = config.skipDesc
+const skipType = config.skipType
+
+const key_index = config.key_index
+// ---------
 
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
@@ -20,9 +25,9 @@ for (let i = 2; i < lines.length; i++) {
     if (lines[i] === "") continue
 
     const e = lines[i].split(";")
-    if (args.length > 2 && !args.includes(rm_quotes(e[2]))) continue
+    if (args.length > 2 && !args.includes(rm_quotes(e[key_index]))) continue
 
-    let tex = tmp.head(course, rm_quotes(e[2]), term, instructor) + tmp.doc.start
+    let tex = tmp.head(term, rm_quotes(e[key_index]), course, instructor) + tmp.doc.start
 
     for (let j = 5; j < e.length; j++) {
         if (title[j] === undefined) continue
@@ -32,16 +37,17 @@ for (let i = 2; i < lines.length; i++) {
             if (is_set(answer)) {
                 tex += format_answer(add_answer(answer))
             }
-        }
-        else if (Object.keys(qst).includes(rm_umlaut(title[j]))) {
+
+        // Main Question Type Checks
+        } else if (Object.keys(qst).includes(rm_umlaut(title[j]))) {
             // --------------------
             // Single Choice Frage
             // --------------------
             if (qst[rm_umlaut(title[j])].type === choice_types.single) {
                 const answer = rm_quotes(e[j])
                 if (is_set(answer)) {
-                    
-                    
+
+
                     tex += generate_qst(title[j], choice_types.single, qst[rm_umlaut(title[j])].value, format_answer(answer))
                     j++
                 }
@@ -117,27 +123,20 @@ for (let i = 2; i < lines.length; i++) {
     }
 
     tex += tmp.doc.end
-    require('./util/terminal').write(`./src/outputs/tex/${rm_quotes(e[2])}.tex`, tex)
-    require('./util/terminal').writeLatex(`./src/outputs/pdf/${rm_quotes(e[2])}.pdf`, tex)
-    console.log("successfully generate file for " + rm_quotes(e[2]))
+    require('./util/terminal').write(`./src/outputs/tex/${rm_quotes(e[key_index])}.tex`, tex)
+    require('./util/terminal').writeLatex(`./src/outputs/pdf/${rm_quotes(e[key_index])}.pdf`, tex)
+    console.log("successfully generate file for " + rm_quotes(e[key_index]))
 }
 
 function generate_qst(title, type, description, answer) {
-    
-    let qst_tex = ""
-    if(skipType){
-        qst_tex = tmp.questions.title(convert2umlaut(title))
-    }
-    else{
-        qst_tex =tmp.questions.title(convert2umlaut(title), type)
-    }
+    let qst_tex = (skipType) ? tmp.questions.title(convert2umlaut(title)) :
+        tmp.questions.title(convert2umlaut(title), type)
 
-    if(!skipDesc){
+    if (!skipDesc) {
         qst_tex += tmp.questions.description(convert2umlaut(description))
     }
 
     qst_tex += tmp.questions.answer(convert2umlaut(answer))
-
     return qst_tex
 }
 
