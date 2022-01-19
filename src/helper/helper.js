@@ -16,4 +16,17 @@ function convert2umlaut(str) {
         .replaceAll("^O*", 'Ö').replaceAll('^A*', 'Ä').replaceAll('^U*', 'Ü')
 }
 
-module.exports = { rm_quotes, rm_txt, rm_umlaut, convert2umlaut }
+// replaces from user entered ; to ,
+function rm_breaking_semicolons(string) {
+    const matches = string.match(/(?!";")"[^;"]*;([^;"]*;?)*"/g)
+
+    if (matches === null) return string
+
+    for (const match of matches) {
+        let match_fix = match.replaceAll(";", ",")
+        string = string.replace(match, match_fix)
+    }
+    return string
+}
+
+module.exports = { rm_quotes, rm_txt, rm_umlaut, convert2umlaut, rm_breaking_semicolons }

@@ -1,9 +1,9 @@
 const config = require("../config/config.json")
 const qst = require('./text/questions.json')
 const tmp = require('./text/latex_templates').template
-const answers = require('./util/terminal').read('./src/inputs/answers.csv')
+const _answers = require('./util/terminal').read('./src/inputs/answers.csv')
 const {choice_types} = require("./helper/model")
-const {rm_umlaut, convert2umlaut, rm_quotes} = require('./helper/helper')
+const {rm_umlaut, convert2umlaut, rm_quotes, rm_breaking_semicolons} = require('./helper/helper')
 const args = process.argv
 
 // ---------
@@ -19,6 +19,8 @@ const skipType = config.skipType
 const key_index = config.key_index
 // ---------
 
+const answers = rm_breaking_semicolons(_answers)
+console.log(1)
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
 for (let i = 2; i < lines.length; i++) {
