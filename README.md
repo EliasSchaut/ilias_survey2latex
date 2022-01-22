@@ -1,4 +1,4 @@
-# ilias_survey2latex (WIP)
+# ilias_survey2latex
 Fast and bad made converter that turns exported ilias_surveys into a beautiful latex code.
 
 ## Preparations
