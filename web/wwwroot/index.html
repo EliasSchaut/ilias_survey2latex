@@ -17,7 +17,7 @@
 </div>
 
 
-<form class="form needs-validation">
+<form class="form needs-validation" action="/" method="post">
     <div class="mb-3">
         <label for="form_term" class="form-label">Term</label>
         <input type="text" class="form-control" id="form_term" placeholder="Beratungsgepräch" value="Beratungsgepräch" name="term" required>
@@ -35,7 +35,7 @@
 
     <div class="mb-3">
         <label for="from_upload" class="form-label">Upload Data</label>
-        <input type="file" class="form-control" id="from_upload" name="upload" required>
+        <input type="file" class="form-control" id="from_upload" name="upload">
     </div>
 
     <button id="button_submit" type="submit" class="btn btn-primary form-submit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hiermit akzeptierst du die Angaben zur Anmeldung in der Datenschutzerklärung">
@@ -49,6 +49,5 @@
 
 </form>
 
-<script rel="script" src="script.js"></script>
 </body>
 </html>
