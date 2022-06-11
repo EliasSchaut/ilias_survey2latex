@@ -2,7 +2,7 @@ const config = require("../config/config.json")
 const qst = require('./text/questions.json')
 const tmp = require('./text/latex_templates').template
 const _answers = require('./util/terminal').read('./src/inputs/answers.csv')
-const {choice_types} = require("./helper/model")
+const { choice_types } = require("./helper/model")
 const {rm_umlaut, convert2umlaut, rm_quotes, rm_breaking_semicolons} = require('./helper/helper')
 const args = process.argv
 
@@ -22,19 +22,22 @@ const key_index = config.key_index
 const answers = rm_breaking_semicolons(_answers)
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
-const keys = args.length > 2 ? args.filter((k, i) => i >= 2) : []
+const user_keys = args.length > 2 ? args.filter((k, i) => i >= 2) : []
 
 for (let i = 2; i < lines.length; i++) {
     if (lines[i] === "") continue
 
     const e = lines[i].split(";")
-    const key = rm_quotes(e[key_index])
-    if (args.length > 2 && !keys.includes(key)) continue
+    const user_key = rm_quotes(e[key_index])
+    if (args.length > 2 && !user_keys.includes(user_key)) continue
 
-    const remove_index = keys.indexOf(key)
-    keys.splice(remove_index, 1)
+    // remove search element
+    if (user_keys.length > 0) {
+        const remove_index = user_keys.indexOf(user_key)
+        user_keys.splice(remove_index, 1)
+    }
 
-    let tex = tmp.head(term, rm_quotes(e[key_index]), course, instructor) + tmp.doc.start
+    let tex = tmp.head(term, user_key, course, instructor) + tmp.doc.start
 
     for (let j = 5; j < e.length; j++) {
         if (title[j] === undefined) continue
@@ -143,7 +146,7 @@ for (let i = 2; i < lines.length; i++) {
     require('./util/terminal').writeLatex(`./src/outputs/pdf/${rm_quotes(e[key_index])}.pdf`, tex)
     console.log("successfully generate file for " + rm_quotes(e[key_index]))
 }
-console.log("\nThe following keys are not in the csv file:\n" + keys + "\n")
+console.log("\nThe following keys are not in the csv file:\n" + user_keys + "\n")
 
 function generate_qst(title, type, description, answer) {
     let qst_tex = (skipType) ? tmp.questions.title(convert2umlaut(title)) :
