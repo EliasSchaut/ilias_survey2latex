@@ -17,7 +17,7 @@
 </div>
 
 
-<form class="form needs-validation" action="/" method="post">
+<form class="form needs-validation" action="/upload" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="form_term" class="form-label">Term</label>
         <input type="text" class="form-control" id="form_term" placeholder="Beratungsgepräch" value="Beratungsgepräch" name="term" required>
@@ -35,18 +35,12 @@
 
     <div class="mb-3">
         <label for="from_upload" class="form-label">Upload Data</label>
-        <input type="file" class="form-control" id="from_upload" name="upload">
+        <input type="file" class="form-control" id="from_upload" name="uploaded_file">
     </div>
 
     <button id="button_submit" type="submit" class="btn btn-primary form-submit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hiermit akzeptierst du die Angaben zur Anmeldung in der Datenschutzerklärung">
         Bestätigen
     </button>
-
-    <button id="button_loading" type="submit" class="btn btn-primary form-submit" style="display: none" disabled>
-        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-        Fertigstellen
-    </button>
-
 </form>
 
 </body>
