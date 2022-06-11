@@ -108,7 +108,7 @@ dist
 
 # Project-Internals
 config/config.json
-src/text/questions.json
+cli/text/questions.json
 *.csv
 *.tex
 *.xlsx
