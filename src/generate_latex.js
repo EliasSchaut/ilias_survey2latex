@@ -22,11 +22,17 @@ const key_index = config.key_index
 const answers = rm_breaking_semicolons(_answers)
 const lines = answers.split("\n")
 const title = rm_quotes(lines[0]).split(";")
+const keys = args.length > 2 ? args.filter((k, i) => i >= 2) : []
+
 for (let i = 2; i < lines.length; i++) {
     if (lines[i] === "") continue
 
     const e = lines[i].split(";")
-    if (args.length > 2 && !args.includes(rm_quotes(e[key_index]))) continue
+    const key = rm_quotes(e[key_index])
+    if (args.length > 2 && !keys.includes(key)) continue
+
+    const remove_index = keys.indexOf(key)
+    keys.splice(remove_index, 1)
 
     let tex = tmp.head(term, rm_quotes(e[key_index]), course, instructor) + tmp.doc.start
 
@@ -137,6 +143,7 @@ for (let i = 2; i < lines.length; i++) {
     require('./util/terminal').writeLatex(`./src/outputs/pdf/${rm_quotes(e[key_index])}.pdf`, tex)
     console.log("successfully generate file for " + rm_quotes(e[key_index]))
 }
+console.log("\nThe following keys are not in the csv file:\n" + keys + "\n")
 
 function generate_qst(title, type, description, answer) {
     let qst_tex = (skipType) ? tmp.questions.title(convert2umlaut(title)) :
