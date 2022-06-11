@@ -1,0 +1,55 @@
+/* -- General Elements -- */
+body {
+    background-color: #f5f5f5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+.handwritten {
+    font-family: 'Caveat', cursive;
+}
+
+.huge {
+    font-size: 5em;
+}
+
+.big {
+    font-size: 2em;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+    float: left
+}
+
+.right {
+    text-align: right;
+    float: right
+}
+/* ------------------ */
+
+/* -- Form ---------- */
+.form-intro {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.form {
+    margin: 30px auto 0;
+    width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.form-submit {
+    margin-top: 20px
+}
+/* ------------------ */

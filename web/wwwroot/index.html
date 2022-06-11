@@ -5,11 +5,50 @@
     <title>Ilias-Survey2Latex</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-Test
+<div class="form-intro">
+    <h1>Ilias-Survey2Latex</h1>
+</div>
 
+
+<form class="form needs-validation">
+    <div class="mb-3">
+        <label for="form_term" class="form-label">Term</label>
+        <input type="text" class="form-control" id="form_term" placeholder="Beratungsgepräch" value="Beratungsgepräch" name="term" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="from_course" class="form-label">Course</label>
+        <input type="text" class="form-control" id="from_course" placeholder="Ezzi" value="Ezzi" name="course" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="from_instructor" class="form-label">Instructor</label>
+        <input type="text" class="form-control" id="from_instructor" placeholder="Max Mustermann" value="ISS" name="instructor" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="from_upload" class="form-label">Upload Data</label>
+        <input type="file" class="form-control" id="from_upload" name="upload" required>
+    </div>
+
+    <button id="button_submit" type="submit" class="btn btn-primary form-submit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hiermit akzeptierst du die Angaben zur Anmeldung in der Datenschutzerklärung">
+        Bestätigen
+    </button>
+
+    <button id="button_loading" type="submit" class="btn btn-primary form-submit" style="display: none" disabled>
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Fertigstellen
+    </button>
+
+</form>
+
+<script rel="script" src="script.js"></script>
 </body>
 </html>
