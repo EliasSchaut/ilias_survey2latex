@@ -34,4 +34,4 @@ for (const line of lines) {
     }
 }
 
-require('./util/terminal').writeJSON('./src/text/questions.json', output)
+require('./util/terminal').writeJSON('./src/outputs/text/questions.json', output)

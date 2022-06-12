@@ -1,5 +1,5 @@
-const config = require("../config/config.json")
-const qst = require('./text/questions.json')
+const config = require("../../config/config.json")
+const qst = require('../outputs/text/questions.json')
 const tmp = require('./text/latex_templates').template
 const _answers = require('./util/terminal').read('./src/inputs/answers.csv')
 const { choice_types } = require("./helper/model")

@@ -1,9 +1,9 @@
 {
   "scripts": {
     "run": "npm run get-q & npm run generate",
-    "get-q": "node cli/questions2json.js",
-    "generate": "node cli/generate_latex.js",
-    "web": "node web/app.js"
+    "get-q": "node src/cli/questions2json.js",
+    "generate": "node src/cli/generate_latex.js",
+    "web": "node src/web/app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
